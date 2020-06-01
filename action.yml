@@ -2,7 +2,7 @@ name: 'Version for Publishing'
 description: 'Creates a version string from package file'
 branding:
   color: orange
-  icon: anchor
+  icon: cloud
 inputs:
   branch:
     description: 'Branch of current execution'
