@@ -3,15 +3,13 @@ const fs = require('fs')
 const path = require('path')
 
 try {
-  const filePath = core.getInput('filePath')
+  const filePath = core.getInput('filePath') != '' ? core.getInput('filePath') : 'package.json'
   const jsonFile = JSON.parse(fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath)))
 
   const branch = core.getInput('branch').replace('/', '-')
   const packageVersion = jsonFile.version
 
   jsonFile.version = getVersion(branch, packageVersion)
-
-  fs.writeFileSync(path.resolve(process.env.GITHUB_WORKSPACE, filePath), `${JSON.stringify(jsonFile, null, 2)}\n`)
 
   core.setOutput('version', jsonFile.version);
 
@@ -20,17 +18,17 @@ try {
 }
 
 function getVersion(branch, packageVersion) {
-  const separatorIndex = packageVersion.indexOf('-')
+  const separatorIndex = packageVersion.indexOf('-');
   if (separatorIndex > -1 ) {
-    const baseVersion = packageVersion.substring(0, separatorIndex)
-    const isMasterBranch = branch === 'master'
+    const baseVersion = packageVersion.substring(0, separatorIndex).replace(/\./g, "-");
+    const isMasterBranch = (branch === 'master' || branch === '');
 
     if (isMasterBranch) {
-      return `${baseVersion}`
+      return `${baseVersion}`;
     }
 
-    return `${baseVersion}-${branch}`
+    return `${baseVersion}-${branch}`;
   }
-
-  return `${packageVersion}-${branch}`
+  const stringVersion = packageVersion.replace(/\./g, "-");
+  return `${stringVersion}-${branch}`;
 }
