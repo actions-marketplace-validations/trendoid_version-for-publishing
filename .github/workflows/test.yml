@@ -21,9 +21,9 @@ jobs:
         branch: dev
         filePath: test/package.json
     - name: test simple version
-      if: steps.createSimpleVersion.outputs.version != '1.0.0-dev.1'
+      if: steps.createSimpleVersion.outputs.version != '1-0-0-dev'
       run: |
-        echo "Received: ${{ steps.createSimpleVersion.outputs.version }}, but expected 1.0.0-dev.1"
+        echo "Received: ${{ steps.createSimpleVersion.outputs.version }}, but expected 1-0-0-dev"
         exit 1
 
     - name: Create json with for complex version
@@ -36,22 +36,22 @@ jobs:
         branch: feat/testi-test
         filePath: test/package.json
     - name: test complex version
-      if: steps.createComplexVersion.outputs.version != '1.0.0-feat-testi-test.1'
+      if: steps.createComplexVersion.outputs.version != '1-0-0-feat-testi-test'
       run: |
         echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test.1"
         exit 1
-
-    - name: Create json with exiting dev version
+  
+    - name: Create json for master version
       run: |
-        echo '{"version": "1.0.0-test.1"}' > test/package.json
-    - name: Increase version
+        echo '{"version": "1.0.0"}' > test/package.json
+    - name: Create simple version
       uses: ./
-      id: createBumpVersion
+      id: createMasterVersion
       with:
-        branch: test
+        branch: master
         filePath: test/package.json
-    - name: test version bump
-      if: steps.createBumpVersion.outputs.version != '1.0.0-test.2'
+    - name: test master version
+      if: steps.createMasterVersion.outputs.version != '1-0-0'
       run: |
-        echo "Received: ${{ steps.createBumpVersion.outputs.version }}, but expected 1.0.0-test.2"
+        echo "Received: ${{ steps.createMasterVersion.outputs.version }}, but expected 1-0-0"
         exit 1

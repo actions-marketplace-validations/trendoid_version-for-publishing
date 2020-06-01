@@ -22,17 +22,15 @@ try {
 function getVersion(branch, packageVersion) {
   const separatorIndex = packageVersion.indexOf('-')
   if (separatorIndex > -1 ) {
-    const devVersion = packageVersion.substring(separatorIndex + 1, packageVersion.length)
     const baseVersion = packageVersion.substring(0, separatorIndex)
-    const isCurrentBranch = branch === devVersion.split('.')[0]
-    const currentVersionNumber = parseInt(devVersion.split('.')[1], 10)
+    const isMasterBranch = branch === 'master'
 
-    if (isCurrentBranch) {
-      return `${baseVersion}-${branch}.${currentVersionNumber + 1}`
+    if (isMasterBranch) {
+      return `${baseVersion}`
     }
 
-    return `${baseVersion}-${branch}.1`
+    return `${baseVersion}-${branch}`
   }
 
-  return `${packageVersion}-${branch}.1`
+  return `${packageVersion}-${branch}`
 }
