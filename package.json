@@ -1,6 +1,6 @@
 {
   "name": "version-for-publishing",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/trendoid/version-for-publishing",
   "license": "MIT",
   "scripts": {
-    "package": "ncc build index.js -o dist",
+    "build": "ncc build index.js -o dist",
     "lint": "eslint *.js"
   },
   "dependencies": {

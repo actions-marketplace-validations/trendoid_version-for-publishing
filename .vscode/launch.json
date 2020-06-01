@@ -14,7 +14,8 @@
             "program": "${workspaceFolder}\\index.js",
             "env": {
                 "GITHUB_WORKSPACE": "${workspaceFolder}\\"
-            }
+            },
+            "preLaunchTask": "build"
         }
     ]
 }

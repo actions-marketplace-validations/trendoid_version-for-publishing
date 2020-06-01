@@ -19,7 +19,7 @@ try {
 
 function getVersion(branch, packageVersion) {
   const separatorIndex = packageVersion.indexOf('-');
-  if (separatorIndex > -1 ) {
+  if (separatorIndex > -1) {
     const baseVersion = packageVersion.substring(0, separatorIndex).replace(/\./g, "-");
     const isMasterBranch = (branch === 'master' || branch === '');
 
@@ -30,5 +30,5 @@ function getVersion(branch, packageVersion) {
     return `${baseVersion}-${branch}`;
   }
   const stringVersion = packageVersion.replace(/\./g, "-");
-  return `${stringVersion}-${branch}`;
+  return `${stringVersion}`;
 }
