@@ -41,17 +41,17 @@ jobs:
         echo "Received: ${{ steps.createComplexVersion.outputs.version }}, but expected 1.0.0-feat-testi-test.1"
         exit 1
   
-    - name: Create json for master version
+    - name: Create json for main version
       run: |
         echo '{"version": "1.0.0"}' > test/package.json
     - name: Create simple version
       uses: ./
-      id: createMasterVersion
+      id: createMainVersion
       with:
-        branch: master
+        branch: main
         filePath: test/package.json
-    - name: test master version
-      if: steps.createMasterVersion.outputs.version != '1-0-0'
+    - name: test main version
+      if: steps.createMainVersion.outputs.version != '1-0-0'
       run: |
-        echo "Received: ${{ steps.createMasterVersion.outputs.version }}, but expected 1-0-0"
+        echo "Received: ${{ steps.createMainVersion.outputs.version }}, but expected 1-0-0"
         exit 1

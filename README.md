@@ -18,13 +18,13 @@ The main part of the version, e.g. `1.0.0` will not be touched.
 
 ### Simple branch
 
-1.   there is a branch named `develop` and its base branch is `master`
+1.   there is a branch named `develop` and its base branch is `main`
 2.   the `package.json` version is `1.0.0`
 3.   Using this action results in version `1-0-0-develop`
 
 ### Nested branches
 
-1.   there is a branch named `parent` and its base branch is `master`
+1.   there is a branch named `parent` and its base branch is `main`
 2.   now another branch `child` is based on `parent`
 3.   there is already a version in `parent` - `1.0.0-parent.1`
 4.   Using this action for `child` results in version `1-0-0-child.1`
@@ -35,15 +35,15 @@ The main part of the version, e.g. `1.0.0` will not be touched.
 1.   there is a branch named `feat/next-big-thing`
 2.   Using this action for `feat/next-big-thing` results in version `1-0-0-next-big-thing.1`
 
-### Master branch
+### Main branch
 
-1.   there is a branch named `master`
+1.   there is a branch named `main`
 2.   the `package.json` version is `1.0.0`
 3.   Using this action results in version `1-0-0`
 
 ## Inputs
 
-- **branch**: The name of the branch to check if the current branch is master or a dev-branch. Default `master`.
+- **branch**: The name of the branch to check if the current branch is main or a dev-branch. Default `main`.
 - **filePath**: The json file path or file name where the `version` field is present. Default `package.json`.
 
 ## Outputs

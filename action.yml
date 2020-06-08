@@ -7,7 +7,7 @@ inputs:
   branch:
     description: 'Branch of current execution'
     required: false
-    default: 'master'
+    default: 'main'
   filePath:
     description: 'Path to json file with version key'
     required: false
