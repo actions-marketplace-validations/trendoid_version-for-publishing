@@ -53,7 +53,7 @@ The main part of the version, e.g. `1.0.0` will not be touched.
 ## Example usage
 
 ```
-uses: trendoid/version-for-publishing@0.1.6
+uses: trendoid/version-for-publishing@0.1.7
 with:
   branch: feat/version-for-publishing
   filePath: ./package.json
